@@ -7,7 +7,6 @@ import store from "./store";
 
 import Login from "./pages/Login";
 
-import "./App.css";
 class App extends Component {
   render() {
     return (
