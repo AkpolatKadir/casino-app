@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { loginUser, resetErrors } from "../actions/authActions";
 
 import PropTypes from "prop-types";
+import classnames from "classnames";
+
+import validateLogin from "../validation/login";
 
 class Login extends Component {
   static propTypes = {
@@ -14,32 +17,54 @@ class Login extends Component {
   };
 
   state = {
-    username: "",
-    password: ""
+    credentials: {
+      username: "",
+      password: ""
+    },
+    validationErrors: {}
   };
 
   onChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      ...this.state,
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
     });
   };
 
   onSubmit = e => {
     e.preventDefault();
 
-    this.props.loginUser(this.state);
+    const { credentials } = this.state;
+
+    let validator = validateLogin(credentials);
+
+    if (validator.isValid) {
+      this.props.loginUser(credentials);
+    } else {
+      this.setState({ validationErrors: { ...validator.errors } }, () => {
+        this.props.resetErrors();
+      });
+    }
   };
 
   render() {
-    const { username, password } = this.state;
-    console.log(this.props);
+    const { credentials, validationErrors } = this.state;
+    const { username, password } = credentials;
+
     return (
       <div className="login">
         <div className="ui grid centered">
           <form onSubmit={this.onSubmit}>
             <div className="fields">
               <div className="required field">
-                <div className="ui icon input">
+                <div
+                  className={classnames("ui icon input", {
+                    error: validationErrors.username
+                  })}
+                >
                   <input
                     type="text"
                     name="username"
@@ -51,7 +76,11 @@ class Login extends Component {
                 </div>
               </div>
               <div className="required field">
-                <div className="ui icon input">
+                <div
+                  className={classnames("ui icon input", {
+                    error: validationErrors.password
+                  })}
+                >
                   <input
                     type="password"
                     name="password"
