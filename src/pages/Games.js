@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 import { getGames } from "../actions/gameActions";
 
+import Category from "../components/Games/Category";
+
 import PropTypes from "prop-types";
 
 class Games extends Component {
@@ -102,17 +104,7 @@ class Games extends Component {
             </div>
           </div>
           <div className="four wide column">
-            <h3 className="ui dividing header">Categories</h3>
-
-            <div className="ui selection animated list category items">
-              {/* <!-- category item template --> */}
-              <div className="category item">
-                <div className="content">
-                  <div className="header" />
-                </div>
-              </div>
-              {/* <!-- end category item template --> */}
-            </div>
+            <Category />
           </div>
         </div>
       </div>
