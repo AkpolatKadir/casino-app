@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import PrivateRoute from "./components/common/PrivateRoute";
-import Header from "./components/Header";
+import Logo from "./components/Logo";
 
 import Login from "./pages/Login";
 import Casino from "./pages/Casino";
@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router history={history}>
-          <Header logoSrc="./images/logo.svg" />
+          <Logo src="./images/logo.svg" />
 
           <div className="main container">
             <Switch>
