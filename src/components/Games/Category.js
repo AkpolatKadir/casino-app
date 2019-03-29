@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getCategories } from "../../actions/categoryActions";
 
 import PropTypes from "prop-types";
+import classnames from "classnames";
 
 class Category extends Component {
   static propTypes = {
@@ -13,24 +14,43 @@ class Category extends Component {
     error: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
   };
 
+  state = {
+    selected: 0
+  };
+
   componentDidMount = () => {
     this.props.getCategories();
   };
 
+  onSelect = categoryId => {
+    const { selected } = this.state;
+
+    if (selected !== categoryId) {
+      this.setState({ selected: categoryId });
+      this.props.onSelect(categoryId);
+    }
+  };
+
   render() {
-    const { categories, onSelect } = this.props;
+    const { selected } = this.state;
+    const { categories } = this.props;
 
     return (
       <React.Fragment>
         <h3 className="ui dividing header">Categories</h3>
         <div className="ui selection animated list category items">
           {categories.map(category => (
-            <div className="category item" key={category.id}>
-              <div className="content">
-                <a href="#" onClick={() => onSelect(category.id)}>
+            <div
+              className={classnames("category item", {
+                active: selected === category.id
+              })}
+              key={category.id}
+            >
+              <a href="#" onClick={() => this.onSelect(category.id)}>
+                <div className="content">
                   <div className="header">{category.name}</div>
-                </a>
-              </div>
+                </div>
+              </a>
             </div>
           ))}
         </div>
