@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
+
+import { logoutUser } from "../actions/authActions";
 import { getGames } from "../actions/gameActions";
 
 import PropTypes from "prop-types";
@@ -15,6 +17,12 @@ class Games extends Component {
 
   componentDidMount = () => {
     this.props.getGames();
+  };
+
+  onLogoutClick = e => {
+    e.preventDefault();
+
+    this.props.logoutUser();
   };
 
   renderGames = games => {
@@ -67,9 +75,13 @@ class Games extends Component {
               </div>
               {/* <!-- end player item template --> */}
             </div>
-            <div className="logout ui left floated secondary button inverted">
-              <i className="left chevron icon" />
-              Log Out
+            <div className="logout ui left floated secondary button">
+              <span>
+                <i className="left chevron icon" />
+                <a href="#" onClick={this.onLogoutClick}>
+                  Log Out
+                </a>
+              </span>
             </div>
           </div>
           <div className="four wide column">
@@ -116,5 +128,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getGames }
+  { getGames, logoutUser }
 )(Games);
