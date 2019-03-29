@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import history from "./history";
 
 import { Provider } from "react-redux";
@@ -22,7 +22,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={history}>
+        <HashRouter history={history}>
           <Logo src="./images/logo.svg" />
 
           <div className="main container">
@@ -33,7 +33,7 @@ class App extends Component {
               <PrivateRoute path="/games/play/:gameId" component={PlayGame} />
             </Switch>
           </div>
-        </Router>
+        </HashRouter>
       </Provider>
     );
   }
