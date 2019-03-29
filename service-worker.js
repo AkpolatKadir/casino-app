@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/casino-app/precache-manifest.9f6a73aa7aeef7548274ba5d473fd4d0.js"
+  "/casino-app/precache-manifest.90fe2a6a3a4a586202e9dd3166f9d85d.js"
 );
 
 workbox.clientsClaim();
