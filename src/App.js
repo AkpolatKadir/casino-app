@@ -12,7 +12,13 @@ import Login from "./pages/Login";
 import Casino from "./pages/Casino";
 import PlayGame from "./pages/PlayGame";
 
+import axios from "axios";
+
 class App extends Component {
+  componentDidMount = () => {
+    axios.defaults.baseURL = process.env.REACT_APP_CASINO_API_ENDPOINT;
+  };
+
   render() {
     return (
       <Provider store={store}>

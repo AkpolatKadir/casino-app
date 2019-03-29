@@ -9,7 +9,7 @@ import {
 export const getGames = () => dispatch => {
   dispatch(fetchGamesRequest());
   axios
-    .get("http://localhost:3001/games")
+    .get("/games")
     .then(res => {
       dispatch(fetchGamesSuccess(res.data));
     })

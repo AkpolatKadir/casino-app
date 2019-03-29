@@ -9,7 +9,7 @@ import {
 
 export const loginUser = credentials => dispatch => {
   axios
-    .post("http://localhost:3001/login", credentials)
+    .post("/login", credentials)
     .then(res => {
       dispatch(loginSuccess(res.data, credentials));
     })
@@ -19,7 +19,7 @@ export const loginUser = credentials => dispatch => {
 };
 
 export const logoutUser = username => dispatch => {
-  axios.post("http://localhost:3001/logout", { username });
+  axios.post("/logout", { username });
   dispatch(logoutUserSuccess());
 };
 
