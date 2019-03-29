@@ -19,6 +19,7 @@ class Casino extends Component {
   };
 
   state = {
+    games: [],
     searchFilter: "",
     categoryFilter: 0
   };
@@ -26,6 +27,16 @@ class Casino extends Component {
   componentDidMount = () => {
     this.props.getGames();
   };
+
+  static getDerivedStateFromProps(props, state) {
+    if (!state.searchFilter && !state.categoryFilter)
+      return {
+        games: props.games
+      };
+    else {
+      return null;
+    }
+  }
 
   onLogoutClick = e => {
     e.preventDefault();
@@ -35,56 +46,67 @@ class Casino extends Component {
   };
 
   onSearch = e => {
-    this.setState({
-      searchFilter: e.target.value
-    });
+    this.setState(
+      {
+        searchFilter: e.target.value
+      },
+      () => {
+        this.setState({
+          games: this.getFilteredGames()
+        });
+      }
+    );
   };
 
   getFilteredGames = () => {
     const { categoryFilter, searchFilter } = this.state;
 
-    let filtered = this.props.games;
+    let filteredGames = this.props.games;
 
     if (searchFilter)
-      filtered = filtered.filter(item => {
-        for (let key in item) {
-          let value;
-          value =
-            item[key] &&
-            item[key]
-              .toString()
-              .trim()
-              .toLocaleUpperCase("en-EN");
-          if (
-            value &&
-            value.indexOf(searchFilter.trim().toLocaleUpperCase("en-EN")) !== -1
-          ) {
-            return true;
-          }
+      filteredGames = filteredGames.filter(game => {
+        const value = game.name
+          .toString()
+          .trim()
+          .toLocaleUpperCase("en-EN");
+
+        if (
+          value &&
+          value.indexOf(searchFilter.trim().toLocaleUpperCase("en-EN")) !== -1
+        ) {
+          return true;
         }
+
         return false;
       });
 
     if (categoryFilter) {
-      filtered = filtered.filter(item =>
-        item.categoryIds.includes(categoryFilter)
+      filteredGames = filteredGames.filter(game =>
+        game.categoryIds.includes(categoryFilter)
       );
     }
 
-    return filtered;
+    return filteredGames;
   };
 
   onCategorySelect = selectedCategoryId => {
     const { categoryFilter } = this.state;
 
     if (categoryFilter !== selectedCategoryId)
-      this.setState({
-        categoryFilter: selectedCategoryId
-      });
+      this.setState(
+        {
+          categoryFilter: selectedCategoryId
+        },
+        () => {
+          this.setState({
+            games: this.getFilteredGames()
+          });
+        }
+      );
   };
 
   render() {
-    const games = this.getFilteredGames();
+    const { games } = this.state;
 
     const { auth } = this.props;
     const { player } = auth.user;
