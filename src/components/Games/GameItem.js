@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 function GameItem({ game }) {
   return (
     <React.Fragment>
@@ -12,10 +14,12 @@ function GameItem({ game }) {
         </div>
         <div className="description">{game.description}</div>
         <div className="extra">
-          <div className="play ui right floated secondary button inverted">
-            Play
-            <i className="right chevron icon" />
-          </div>
+          <Link to={`/games/play/${game.code}`}>
+            <div className="play ui right floated secondary button inverted">
+              Play
+              <i className="right chevron icon" />
+            </div>
+          </Link>
         </div>
       </div>
     </React.Fragment>

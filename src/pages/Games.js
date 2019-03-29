@@ -108,14 +108,12 @@ class Games extends Component {
               </div>
               {/* <!-- end player item template --> */}
             </div>
-            <div className="logout ui left floated secondary button">
-              <span>
+            <a href="#" onClick={this.onLogoutClick}>
+              <div className="logout ui left floated secondary button">
                 <i className="left chevron icon" />
-                <a href="#" onClick={this.onLogoutClick}>
-                  Log Out
-                </a>
-              </span>
-            </div>
+                Log Out
+              </div>
+            </a>
           </div>
           <div className="four wide column">
             <div className="search ui small icon input ">
