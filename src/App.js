@@ -5,8 +5,11 @@ import history from "./history";
 import { Provider } from "react-redux";
 import store from "./store";
 
+import PrivateRoute from "./components/common/PrivateRoute";
 import Header from "./components/Header";
+
 import Login from "./pages/Login";
+import Games from "./pages/Games";
 
 class App extends Component {
   render() {
@@ -19,6 +22,7 @@ class App extends Component {
             <Switch>
               <Redirect exact from="/" to="/login" />
               <Route exact path="/login" component={Login} />
+              <PrivateRoute exact path="/games" component={Games} />
             </Switch>
           </div>
         </Router>
