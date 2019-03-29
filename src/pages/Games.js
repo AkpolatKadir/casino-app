@@ -40,7 +40,8 @@ class Games extends Component {
   onLogoutClick = e => {
     e.preventDefault();
 
-    this.props.logoutUser();
+    const { auth } = this.props;
+    this.props.logoutUser(auth.user.username);
   };
 
   onSearch = e => {

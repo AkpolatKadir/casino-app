@@ -11,21 +11,22 @@ export const loginUser = credentials => dispatch => {
   axios
     .post("http://localhost:3001/login", credentials)
     .then(res => {
-      dispatch(loginSuccess(res.data));
+      dispatch(loginSuccess(res.data, credentials));
     })
     .catch(error => {
       dispatch(loginFailure(error.response && error.response.data));
     });
 };
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = username => dispatch => {
+  axios.post("http://localhost:3001/logout", { username });
   dispatch(logoutUserSuccess());
 };
 
-export const loginSuccess = user => {
+export const loginSuccess = (user, credentials) => {
   return {
     type: LOGIN_SUCCESS,
-    payload: user
+    payload: { ...user, username: credentials.username }
   };
 };
 
