@@ -24,6 +24,15 @@ class Login extends Component {
     validationErrors: {}
   };
 
+  static getDerivedStateFromProps = (props, state) => {
+    const { isAuthenticated } = props.auth;
+
+    if (isAuthenticated) {
+      props.history.push("/games");
+    }
+    return state;
+  };
+
   onChange = e => {
     this.setState({
       ...this.state,
