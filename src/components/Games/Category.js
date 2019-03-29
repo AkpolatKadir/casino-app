@@ -18,24 +18,22 @@ class Category extends Component {
   };
 
   render() {
-    const { categories } = this.props;
+    const { categories, onSelect } = this.props;
 
     return (
       <React.Fragment>
         <h3 className="ui dividing header">Categories</h3>
-
-        {categories.map(category => (
-          <div
-            className="ui selection animated list category items"
-            key={category.id}
-          >
-            <div className="category item">
+        <div className="ui selection animated list category items">
+          {categories.map(category => (
+            <div className="category item" key={category.id}>
               <div className="content">
-                <div className="header">{category.name}</div>
+                <a href="#" onClick={() => onSelect(category.id)}>
+                  <div className="header">{category.name}</div>
+                </a>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </React.Fragment>
     );
   }

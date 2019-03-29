@@ -19,19 +19,9 @@ class Casino extends Component {
   };
 
   state = {
-    games: [],
-    searchFilter: ""
+    searchFilter: "",
+    categoryFilter: 0
   };
-
-  static getDerivedStateFromProps(props, state) {
-    if (!state.searchFilter)
-      return {
-        games: props.games
-      };
-    else {
-      return null;
-    }
-  }
 
   componentDidMount = () => {
     this.props.getGames();
@@ -45,33 +35,56 @@ class Casino extends Component {
   };
 
   onSearch = e => {
-    const filtered = this.props.games.filter(item => {
-      for (let key in item) {
-        let value;
-        value =
-          item[key] &&
-          item[key]
-            .toString()
-            .trim()
-            .toLocaleUpperCase("en-EN");
-        if (
-          value &&
-          value.indexOf(e.target.value.trim().toLocaleUpperCase("en-EN")) !== -1
-        ) {
-          return true;
-        }
-      }
-      return false;
-    });
-
     this.setState({
-      games: filtered,
       searchFilter: e.target.value
     });
   };
 
+  getFilteredGames = () => {
+    const { categoryFilter, searchFilter } = this.state;
+
+    let filtered = this.props.games;
+
+    if (searchFilter)
+      filtered = filtered.filter(item => {
+        for (let key in item) {
+          let value;
+          value =
+            item[key] &&
+            item[key]
+              .toString()
+              .trim()
+              .toLocaleUpperCase("en-EN");
+          if (
+            value &&
+            value.indexOf(searchFilter.trim().toLocaleUpperCase("en-EN")) !== -1
+          ) {
+            return true;
+          }
+        }
+        return false;
+      });
+
+    if (categoryFilter) {
+      filtered = filtered.filter(item =>
+        item.categoryIds.includes(categoryFilter)
+      );
+    }
+
+    return filtered;
+  };
+
+  onCategorySelect = selectedCategoryId => {
+    const { categoryFilter } = this.state;
+
+    if (categoryFilter !== selectedCategoryId)
+      this.setState({
+        categoryFilter: selectedCategoryId
+      });
+  };
+
   render() {
-    const { games } = this.state;
+    const games = this.getFilteredGames();
 
     const { auth } = this.props;
     const { player } = auth.user;
@@ -123,7 +136,7 @@ class Casino extends Component {
             <Games games={games} />
           </div>
           <div className="four wide column">
-            <Category />
+            <Category onSelect={this.onCategorySelect} />
           </div>
         </div>
       </div>
