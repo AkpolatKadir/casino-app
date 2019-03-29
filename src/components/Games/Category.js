@@ -46,7 +46,13 @@ class Category extends Component {
               })}
               key={category.id}
             >
-              <a href="#" onClick={() => this.onSelect(category.id)}>
+              <a
+                href="#"
+                onClick={e => {
+                  e.preventDefault();
+                  this.onSelect(category.id);
+                }}
+              >
                 <div className="content">
                   <div className="header">{category.name}</div>
                 </div>
