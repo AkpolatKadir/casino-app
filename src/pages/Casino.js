@@ -6,11 +6,11 @@ import { logoutUser } from "../actions/authActions";
 import { getGames } from "../actions/gameActions";
 
 import Category from "../components/Games/Category";
-import GameItem from "../components/Games/GameItem";
+import Games from "../components/Games/Games";
 
 import PropTypes from "prop-types";
 
-class Games extends Component {
+class Casino extends Component {
   static propTypes = {
     getGames: PropTypes.func.isRequired,
     games: PropTypes.array.isRequired,
@@ -70,14 +70,6 @@ class Games extends Component {
     });
   };
 
-  renderGames = games => {
-    return games.map((game, index) => (
-      <div className="game item" key={index}>
-        <GameItem game={game} />
-      </div>
-    ));
-  };
-
   render() {
     const { games } = this.state;
 
@@ -128,13 +120,7 @@ class Games extends Component {
         </div>
         <div className="ui grid">
           <div className="twelve wide column">
-            <h3 className="ui dividing header">Games</h3>
-
-            <div className="ui relaxed divided game items links">
-              {/* <!-- game item template --> */}
-              {this.renderGames(games)}
-              {/* <!-- end game item template --> */}
-            </div>
+            <Games games={games} />
           </div>
           <div className="four wide column">
             <Category />
@@ -154,4 +140,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getGames, logoutUser }
-)(Games);
+)(Casino);

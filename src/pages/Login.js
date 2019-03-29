@@ -28,7 +28,7 @@ class Login extends Component {
     const { isAuthenticated } = props.auth;
 
     if (isAuthenticated) {
-      props.history.push("/games");
+      props.history.push("/casino");
     }
     return state;
   };

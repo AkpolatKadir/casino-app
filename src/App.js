@@ -9,7 +9,7 @@ import PrivateRoute from "./components/common/PrivateRoute";
 import Header from "./components/Header";
 
 import Login from "./pages/Login";
-import Games from "./pages/Games";
+import Casino from "./pages/Casino";
 import PlayGame from "./pages/PlayGame";
 
 class App extends Component {
@@ -23,7 +23,7 @@ class App extends Component {
             <Switch>
               <Redirect exact from="/" to="/login" />
               <Route exact path="/login" component={Login} />
-              <PrivateRoute exact path="/games" component={Games} />
+              <PrivateRoute exact path="/casino" component={Casino} />
               <PrivateRoute path="/games/play/:gameId" component={PlayGame} />
             </Switch>
           </div>

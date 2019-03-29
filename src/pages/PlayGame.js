@@ -14,7 +14,7 @@ class PlayGame extends Component {
       <React.Fragment>
         <div className="ui grid centered">
           <div className="three wide column">
-            <Link to="/games">
+            <Link to="/casino">
               <div className="ui right floated secondary button inverted">
                 <i className="left chevron icon" />
                 Back
