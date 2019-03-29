@@ -17,6 +17,21 @@ class Games extends Component {
     error: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
   };
 
+  state = {
+    games: [],
+    searchFilter: ""
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    if (!state.searchFilter)
+      return {
+        games: props.games
+      };
+    else {
+      return null;
+    }
+  }
+
   componentDidMount = () => {
     this.props.getGames();
   };
@@ -25,6 +40,32 @@ class Games extends Component {
     e.preventDefault();
 
     this.props.logoutUser();
+  };
+
+  onSearch = e => {
+    const filtered = this.props.games.filter(item => {
+      for (let key in item) {
+        let value;
+        value =
+          item[key] &&
+          item[key]
+            .toString()
+            .trim()
+            .toLocaleUpperCase("en-EN");
+        if (
+          value &&
+          value.indexOf(e.target.value.trim().toLocaleUpperCase("en-EN")) !== -1
+        ) {
+          return true;
+        }
+      }
+      return false;
+    });
+
+    this.setState({
+      games: filtered,
+      searchFilter: e.target.value
+    });
   };
 
   renderGames = games => {
@@ -50,7 +91,9 @@ class Games extends Component {
   };
 
   render() {
-    const { games, auth } = this.props;
+    const { games } = this.state;
+
+    const { auth } = this.props;
     const { player } = auth.user;
 
     return (
@@ -88,7 +131,11 @@ class Games extends Component {
           </div>
           <div className="four wide column">
             <div className="search ui small icon input ">
-              <input type="text" placeholder="Search Game" />
+              <input
+                type="text"
+                placeholder="Search Game"
+                onChange={this.onSearch}
+              />
               <i className="search icon" />
             </div>
           </div>
