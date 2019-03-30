@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { setAuthToken, removeAuthToken } from "../utils/setAuthToken";
+
 import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
@@ -11,7 +13,8 @@ export const loginUser = credentials => dispatch => {
   axios
     .post("/login", credentials)
     .then(res => {
-      dispatch(loginSuccess(res.data, credentials));
+      const auth = { ...res.data, username: credentials.username };
+      dispatch(loginSuccess(auth));
     })
     .catch(error => {
       dispatch(loginFailure(error.response && error.response.data));
@@ -20,13 +23,15 @@ export const loginUser = credentials => dispatch => {
 
 export const logoutUser = username => dispatch => {
   axios.post("/logout", { username });
+  removeAuthToken();
   dispatch(logoutUserSuccess());
 };
 
-export const loginSuccess = (user, credentials) => {
+export const loginSuccess = auth => {
+  setAuthToken(auth);
   return {
     type: LOGIN_SUCCESS,
-    payload: { ...user, username: credentials.username }
+    payload: auth
   };
 };
 

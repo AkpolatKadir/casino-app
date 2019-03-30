@@ -14,11 +14,17 @@ import PlayGame from "./pages/PlayGame";
 
 import axios from "axios";
 
-class App extends Component {
-  componentDidMount = () => {
-    axios.defaults.baseURL = process.env.REACT_APP_CASINO_API_ENDPOINT;
-  };
+import { loginSuccess } from "../src/actions/authActions";
 
+if (localStorage.auth) {
+  const auth = localStorage.auth;
+
+  store.dispatch(loginSuccess(JSON.parse(auth)));
+}
+
+axios.defaults.baseURL = process.env.REACT_APP_CASINO_API_ENDPOINT;
+
+class App extends Component {
   render() {
     return (
       <Provider store={store}>
