@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import PrivateRoute from "./components/common/PrivateRoute";
-import Logo from "./components/Logo";
+import Logo from "./components/common/Logo";
 
 import Login from "./pages/Login";
 import Casino from "./pages/Casino";

@@ -5,8 +5,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 import { getGames } from "../actions/gameActions";
 
-import Category from "../components/Games/Category";
-import Games from "../components/Games/Games";
+import { Category, Games } from "../components/Games";
 
 import PropTypes from "prop-types";
 
