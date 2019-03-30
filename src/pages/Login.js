@@ -51,7 +51,9 @@ class Login extends Component {
     let validator = validateLogin(credentials);
 
     if (validator.isValid) {
-      this.props.loginUser(credentials);
+      this.setState({ validationErrors: {} }, () => {
+        this.props.loginUser(credentials);
+      });
     } else {
       this.setState({ validationErrors: { ...validator.errors } }, () => {
         this.props.resetErrors();
@@ -62,6 +64,8 @@ class Login extends Component {
   render() {
     const { credentials, validationErrors } = this.state;
     const { username, password } = credentials;
+
+    const { error } = this.props;
 
     return (
       <div className="login">
@@ -100,6 +104,11 @@ class Login extends Component {
                   <i className="lock icon" />
                 </div>
               </div>
+              {error && (
+                <label className="error">
+                  Username or password is incorrect.
+                </label>
+              )}
               <div className="field">
                 <div className="ui icon input">
                   <input type="submit" value="Login" />
