@@ -135,7 +135,7 @@ class Casino extends Component {
               </div>
               {/* <!-- end player item template --> */}
             </div>
-            <a href="#" onClick={this.onLogoutClick}>
+            <a href="#/" onClick={this.onLogoutClick}>
               <div className="logout ui left floated secondary button">
                 <i className="left chevron icon" />
                 Log Out
