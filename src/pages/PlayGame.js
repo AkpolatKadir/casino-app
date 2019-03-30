@@ -16,13 +16,15 @@ class PlayGame extends Component {
           <div className="three wide column">
             <Link to="/casino">
               <div className="ui right floated secondary button inverted">
-                <i className="left chevron icon" />
+                <i className="two chevron icon" />
                 Back
               </div>
             </Link>
           </div>
-          <div className="ten wide column">
-            <div id="game-launch" />
+          <div className="twelve wide column">
+            <div className="iframe-container">
+              <div id="game-launch" />
+            </div>
           </div>
           <div className="three wide column" />
         </div>
