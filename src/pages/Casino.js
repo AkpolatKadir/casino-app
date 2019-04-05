@@ -78,6 +78,12 @@ class Casino extends Component {
 
     let filteredGames = this.props.games;
 
+    if (categoryFilter) {
+      filteredGames = filteredGames.filter(game =>
+        game.categoryIds.includes(categoryFilter)
+      );
+    }
+
     if (searchFilter)
       filteredGames = filteredGames.filter(game => {
         const value = game.name
@@ -94,12 +100,6 @@ class Casino extends Component {
 
         return false;
       });
-
-    if (categoryFilter) {
-      filteredGames = filteredGames.filter(game =>
-        game.categoryIds.includes(categoryFilter)
-      );
-    }
 
     return filteredGames;
   };

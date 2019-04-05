@@ -35,10 +35,9 @@ class Login extends Component {
 
   onChange = e => {
     this.setState({
-      ...this.state,
       credentials: {
         ...this.state.credentials,
-        [e.target.name]: e.target.value
+        [e.target.name]: e.target.value.trim()
       }
     });
   };
