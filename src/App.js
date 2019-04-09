@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import history from "./history";
 
@@ -8,13 +8,13 @@ import store from "./store";
 import PrivateRoute from "./components/common/PrivateRoute";
 import Logo from "./components/common/Logo";
 
-import Login from "./pages/Login";
-import Casino from "./pages/Casino";
-import PlayGame from "./pages/PlayGame";
-
 import axios from "axios";
 
 import { loginSuccess } from "../src/actions/authActions";
+
+import Login from "./pages/Login";
+import PlayGame from "./pages/PlayGame";
+const Casino = lazy(() => import("./pages/Casino"));
 
 if (localStorage.auth) {
   const auth = localStorage.auth;
@@ -30,15 +30,16 @@ class App extends Component {
       <Provider store={store}>
         <HashRouter history={history}>
           <Logo src="./images/logo.svg" />
-
-          <div className="main container">
-            <Switch>
-              <Redirect exact from="/" to="/login" />
-              <Route exact path="/login" component={Login} />
-              <PrivateRoute exact path="/casino" component={Casino} />
-              <PrivateRoute path="/games/play/:gameId" component={PlayGame} />
-            </Switch>
-          </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className="main container">
+              <Switch>
+                <Redirect exact from="/" to="/login" />
+                <Route exact path="/login" component={Login} />
+                <PrivateRoute exact path="/casino" component={Casino} />
+                <PrivateRoute path="/games/play/:gameId" component={PlayGame} />
+              </Switch>
+            </div>
+          </Suspense>
         </HashRouter>
       </Provider>
     );
