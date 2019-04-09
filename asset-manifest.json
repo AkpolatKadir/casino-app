@@ -1,13 +1,15 @@
 {
   "main.css": "/casino-app/static/css/main.a18ac747.chunk.css",
-  "main.js": "/casino-app/static/js/main.4f4328d8.chunk.js",
-  "main.js.map": "/casino-app/static/js/main.4f4328d8.chunk.js.map",
-  "runtime~main.js": "/casino-app/static/js/runtime~main.6d664e72.js",
-  "runtime~main.js.map": "/casino-app/static/js/runtime~main.6d664e72.js.map",
-  "static/js/2.df825858.chunk.js": "/casino-app/static/js/2.df825858.chunk.js",
-  "static/js/2.df825858.chunk.js.map": "/casino-app/static/js/2.df825858.chunk.js.map",
+  "main.js": "/casino-app/static/js/main.43ba5560.chunk.js",
+  "main.js.map": "/casino-app/static/js/main.43ba5560.chunk.js.map",
+  "runtime~main.js": "/casino-app/static/js/runtime~main.ff089954.js",
+  "runtime~main.js.map": "/casino-app/static/js/runtime~main.ff089954.js.map",
+  "static/js/2.f8975e37.chunk.js": "/casino-app/static/js/2.f8975e37.chunk.js",
+  "static/js/2.f8975e37.chunk.js.map": "/casino-app/static/js/2.f8975e37.chunk.js.map",
+  "static/js/3.f377ae56.chunk.js": "/casino-app/static/js/3.f377ae56.chunk.js",
+  "static/js/3.f377ae56.chunk.js.map": "/casino-app/static/js/3.f377ae56.chunk.js.map",
   "index.html": "/casino-app/index.html",
-  "precache-manifest.a2e4e71eb0fad7a2f7cd65abb898e338.js": "/casino-app/precache-manifest.a2e4e71eb0fad7a2f7cd65abb898e338.js",
+  "precache-manifest.8a751078b067aabf79f4268e0ba9ed4b.js": "/casino-app/precache-manifest.8a751078b067aabf79f4268e0ba9ed4b.js",
   "service-worker.js": "/casino-app/service-worker.js",
   "static/css/main.a18ac747.chunk.css.map": "/casino-app/static/css/main.a18ac747.chunk.css.map"
 }
