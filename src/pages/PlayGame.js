@@ -16,7 +16,7 @@ class PlayGame extends Component {
           <div className="three wide column">
             <Link to="/casino">
               <div className="ui right floated secondary button inverted">
-                <i className="two chevron icon" />
+                <i className="two left chevron icon" />
                 Back
               </div>
             </Link>
