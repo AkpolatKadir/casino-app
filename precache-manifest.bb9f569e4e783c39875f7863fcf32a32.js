@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/casino-app/static/js/runtime~main.ff089954.js"
   },
   {
-    "revision": "f8c44fc4ecfd137ed503",
-    "url": "/casino-app/static/js/main.43ba5560.chunk.js"
+    "revision": "0ba39977d74ae92a2ac2",
+    "url": "/casino-app/static/js/main.3f914235.chunk.js"
   },
   {
     "revision": "378d1bb70d6b68985e51",
@@ -16,11 +16,11 @@ self.__precacheManifest = [
     "url": "/casino-app/static/js/2.f8975e37.chunk.js"
   },
   {
-    "revision": "f8c44fc4ecfd137ed503",
+    "revision": "0ba39977d74ae92a2ac2",
     "url": "/casino-app/static/css/main.a18ac747.chunk.css"
   },
   {
-    "revision": "6eaf72eee8774950fbe7280ae43de35c",
+    "revision": "f27dfb73622f38971c0124c2ad0c9cd8",
     "url": "/casino-app/index.html"
   }
 ];
